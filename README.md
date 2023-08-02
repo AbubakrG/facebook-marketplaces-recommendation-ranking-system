@@ -11,3 +11,19 @@ This will be done by using a multi-modal neural network which combines both a te
 Once the model is trained, I will deploy it using FastAPI, containerising it using Docker, and uploading it to an EC2 instance. The API will contain all the models that I create and train, so any new request can be processed to make predictions on the cloud. 
 
 To ensure that the model can be easily modified without building a new image again, the files corresponding to each model will be bound to the Docker image, so it allows us to update the models with retrained models even after deploying them.
+
+## Milestone 1-2
+
+These steps involved creating the github repo and acquire an understanding of the Facebook Marketplace ranking system
+
+## Milestone 3
+# Task 1
+
+This task involved acquiring (via ssh on aws) and cleaning two .csv dataset files (images.csv and products.csv)
+The .csv file contained line terminators that were not compatible with the default pandas reader. In order to load it, I had to set a different line terminator.The dataset files contained information about the listing, including its price, location, and description.
+
+I first created a file named clean_tabular_data.py within the repository. In this file, I created code to clean the tabular dataset.
+
+This includes the following steps:
+- Remove all the null values in any column.
+- Convert the prices into a numerical format.
