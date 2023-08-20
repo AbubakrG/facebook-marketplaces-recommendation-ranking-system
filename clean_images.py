@@ -1,29 +1,30 @@
-from PIL import Image
 import os
+import cv2
+import glob
 
-def clean_image_data(final_size, im):
-    size = im.size
-    ratio = float(final_size) / max(size)
-    new_image_size = tuple([int(x*ratio) for x in size])
-    im = im.resize(new_image_size, Image.ANTIALIAS) 
-    new_im = Image.new("RGB", (final_size, final_size))
-    new_im.paste(im, ((final_size-new_image_size[0])//2, (final_size-new_image_size[1])//2))
+def clean_image_data(input_folder, output_folder, target_size):
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
 
-    return new_im
+    image_paths = glob.glob(os.path.join(input_folder, '*.jpg')) 
+
+    for image_path in image_paths:
+        image = cv2.imread(image_path)
+        
+        # Resize image to the target size and convert to RGB mode
+        image = cv2.resize(image, target_size)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        
+        # Save the resized and normalized image to the output folder
+        image_filename = os.path.basename(image_path)
+        print(image_filename+' '+str(image.shape)+' '+str(image.size)+'\n')
+        output_path = os.path.join(output_folder, image_filename)
+        cv2.imwrite(output_path, image)
+
 
 if __name__ == '__main__':
-    path = "images/raw_images"
-    dirs = os.listdir(path)
-    final_size = 512
+    input_folder = 'Datasets/images_fb/images'
+    output_folder = 'Datasets/images_fb/images_cleaned'
+    target_size = (224, 224)
 
-    new_path = "images/cleaned_images"
-    if not os.path.exists(new_path):
-        os.mkdir(new_path)
-
-    for n, item in enumerate(dirs[:5], 1): # Limit/increase number of processed images
-        try:
-            image = Image.open(path + item)
-            new_image = clean_image_data(final_size, image)
-            new_image.save(f'{new_path}{n}_resized.jpg')
-        except:
-            print(f'Resizing failed for {item}.')
+    clean_image_data(input_folder, output_folder, target_size)
