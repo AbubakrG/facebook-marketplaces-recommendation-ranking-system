@@ -44,10 +44,10 @@ The model training requires a measure of the model performance, here we use the 
 
 The training Loss at each Epoch is shown below.
 
-![plot]()
+![plot](https://github.com/AbubakrG/facebook-marketplaces-recommendation-ranking-system/blob/master/FAISS_API/blob/main/README_Images/Training_Loss.png)
 
 The model Accuracy on the evaluation split to compare the performance at each step of the epoch.
-![plot]()
+![plot](https://github.com/AbubakrG/facebook-marketplaces-recommendation-ranking-system/blob/master/FAISS_API/blob/main/README_Images/Training_Accuracy.png)
 
 * Accuracy after 20 EPOCH = 60%
 * Accuracy after 150 EPOCH = 64%
@@ -168,5 +168,5 @@ plot_image_with_category(file_path,image_labels,category)
 ```
 After proccessing:
 
-![plot]()
+![plot](https://github.com/AbubakrG/facebook-marketplaces-recommendation-ranking-system/blob/master/FAISS_API/blob/main/README_Images/output.png)
 
